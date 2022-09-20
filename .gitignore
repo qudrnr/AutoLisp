@@ -1,0 +1,20 @@
+# Include your project-specific ignores in this file
+
+# Lisp file
+#/*.lsp
+qr-flange.lsp
+qr-library.lsp
+qr-load-com copy.lsp
+qr-network.lsp
+qr-system.lsp
+
+# container
+*.vlx
+
+# png file
+*.png
+*.gif
+*.jpg
+
+# Build : prv and fas file
+/compile/
