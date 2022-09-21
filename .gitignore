@@ -16,5 +16,7 @@ qr-system.lsp
 *.gif
 *.jpg
 
+*.bak
+
 # Build : prv and fas file
 /compile/

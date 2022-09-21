@@ -1,9 +1,15 @@
+; -----------------------------------------------
+; https://github.com/qudrnr/qr
+; https://velog.io/@list
+; Date : 2022-09-20
+; -----------------------------------------------
+
 (defun qr-load-com ()
  
 	(defun qr-Modelspace ()
 
 		(setq doc (vla-get-activedocument (vlax-get-acad-object))
-				spc (vlax-get-property doc 'Modelspace)
+			  spc (vlax-get-property doc 'Modelspace)
 		)
 
 		(princ)
@@ -12,7 +18,7 @@
 	(defun qr-Paperspace ()
 
 		(setq doc (vla-get-activedocument (vlax-get-acad-object))
-			spc (vlax-get-property doc 'Paperspace)
+			  spc (vlax-get-property doc 'Paperspace)
 		)
 
 		(princ)
@@ -50,7 +56,21 @@
 	; @param lst {LIST} : Point List
 	; @param cls {INT} : close
 	; @return : VLA-OBJECT
-	(defun qr-LWPoly ( lst cls / var obj)
+	(defun qr-LWPoly ( lst cls / qr-flat var obj)
+
+		; list를 flat하게 만든다. 
+		(defun qr-flat ( lst )
+
+			(if (atom lst)
+
+				(list lst)
+
+				(append 
+					(qr-flat (car lst)) 
+					(if (cdr lst) (qr-flat (cdr lst)))
+				)
+			)
+		)
 
 		(and 
 	
@@ -81,6 +101,21 @@
 
 		; return
 		obj 
+	)
+
+	; @extvar spc {vla-object} : Active Document Space
+	; @param p1 {point} : first point
+	; @param p2 {point} : second point
+	; @param p3 {point} : text point
+	; @param ang {real} : angle
+	(defun qr-DimRotated ( p1 p2 p3 ang )
+
+		(if (and p1 p2 p3 ang)
+
+			(vl-catch-all-apply 'vlax-invoke 	
+				(list spc 'AddDimRotated p1 p2 p3 ang)
+			)
+		)
 	)
 )
 
