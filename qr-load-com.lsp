@@ -52,7 +52,7 @@
 		)
 	)
 
-	; @brief : polyline drawing
+	; @extvar spc {vla-object} : Active Document Space
 	; @param lst {LIST} : Point List
 	; @param cls {INT} : close
 	; @return : VLA-OBJECT
@@ -103,6 +103,7 @@
 		obj 
 	)
 
+	
 	; @extvar spc {vla-object} : Active Document Space
 	; @param p1 {point} : first point
 	; @param p2 {point} : second point

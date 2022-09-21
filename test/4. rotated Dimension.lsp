@@ -1,8 +1,8 @@
 
 ; -----------------------------------------------
-; Date : 2022-09-20
+; Date : 2022-09-21
 ; https://github.com/qudrnr/qr
-; https://velog.io/@list/Autolisp-Circle-Drawing
+; https://velog.io/@list/Autolisp-Rotated-Dimension
 ; -----------------------------------------------
 
 ; qr 함수로드
