@@ -1,10 +1,12 @@
 ## AUTOLISP Function List
 
-### qr-load-com.VLX
+### qr-load-com.lsp
 
     * qr-Modelspace
     * qr-Paperspace
     * qr-Line
     * qr-circle
+    * qr-lwpoly
+    * qr-dimrotated
 
  
