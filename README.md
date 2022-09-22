@@ -8,5 +8,6 @@
     * qr-circle
     * qr-lwpoly
     * qr-dimrotated
+    * qr-hatch
 
  

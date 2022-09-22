@@ -118,6 +118,34 @@
 			)
 		)
 	)
+
+	; @param Obj {VLA-OBJECT} : Polyline, Circle object
+	; @param Shape {STR} : Hatch shape
+	; @etc : modelspace only
+	(defun qr-Hatch ( Obj Shape / doc spc hat ole )
+
+		(qr-modelspace)
+				 
+		(setq hat (vla-AddHatch spc 0 Shape :vlax-true))
+
+  		(if (and Obj hat)
+				
+			(progn
+			
+				(setq ole 
+					(vlax-make-safearray vlax-vbObject 
+						'(0 . 0)
+					)
+				)
+				
+				(vlax-safearray-put-element ole 0 Obj)
+				
+				(vla-AppendInnerLoop hat ole)
+				
+				hat
+			)
+		)
+	)
 )
 
 (princ)
