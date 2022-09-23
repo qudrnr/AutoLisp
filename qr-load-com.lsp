@@ -102,7 +102,6 @@
 		; return
 		obj 
 	)
-
 	
 	; @extvar spc {vla-object} : Active Document Space
 	; @param p1 {point} : first point
@@ -119,8 +118,9 @@
 		)
 	)
 
+	; @brief : Hatch drawing
 	; @param Obj {VLA-OBJECT} : Polyline, Circle object
-	; @param Shape {STR} : Hatch shape
+	; @param Shape {STR} : Pattern name
 	; @etc : modelspace only
 	(defun qr-Hatch ( Obj Shape / doc spc hat ole )
 
@@ -144,6 +144,15 @@
 				
 				hat
 			)
+		)
+	)
+
+	; @brief : object copy only
+	; @param obj {VLA-OBJECT} : Object
+	(defun qr-copy ( obj )
+
+		(vl-catch-all-apply 'vlax-invoke 
+			(list obj 'Copy)
 		)
 	)
 )
