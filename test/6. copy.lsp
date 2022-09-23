@@ -1,6 +1,6 @@
 
 ; -----------------------------------------------
-; Date : 2022-09-21
+; Date : 2022-09-23
 ; https://github.com/qudrnr/qr
 ; https://velog.io/@list/Autolisp-Copy-Object
 ; -----------------------------------------------
@@ -8,8 +8,10 @@
 ; qr 함수로드
 (qr-load-com)
 
-(defun test6 (/ p1 p2 p3 p4 o1 o2)
- 
+(defun test6 (/ doc spc p1 p2 p3 p4 o1 o2)
+    
+    (qr-Modelspace)
+
     ; 객체를 그리기 위해서 마우스로 시작점을
     ; 입력받고 나머지 포인트를 계산한다.
     (setq p1 (getpoint)
