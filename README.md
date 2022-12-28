@@ -9,5 +9,4 @@
     * qr-lwpoly
     * qr-dimrotated
     * qr-hatch
-
- 
+    * qr-push

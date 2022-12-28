@@ -157,33 +157,35 @@
 	)
 
 	; ==========================================================
-	; Push the value to the list.
+	; Add one or more elements to the end of the list and return the list.
 	; ==========================================================
-	; @param var : Elements to Add to List
-	; @param lst : List
+	; @param item : Elements to Add to List
+	; @param array : List
 	; ==========================================================
-	(defun qr-push ( var lst index )
+	; (qr-push "A" (list "B" "C")) -> ("B" "C" "A")
+	; (qr-push (list "C") (list "A" "B")) -> ("A" "B" "C")
+	; ==========================================================
+	(defun qr-push ( item array )
 
-		(if (and var lst
+		(cond
+			(	(= nil array)
 
-			(cond
-				(	(= nil index)
-
-					(cond
-						(	(listp var)
-
-							(append lst var)
-						)
-						(	t
-
-							(append lst (list var))
-						)
-					)
-				)
+				(list item)
 			)
+			(	(and item (listp item))
 
-			lst
+				(append array item)
+			)
+			(	t
+
+				(append array (list item))
+			)
 		)
+	)
+
+	(defun qr-pushOfIndex ( item array index)
+
+		t
 	)
 )
 (princ)
