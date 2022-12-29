@@ -8,7 +8,7 @@
 ; -----------------------------------------------
 (defun qr-FileOpen_Dwg (file ReadOnly / doc )
 
-	(setq doc (vla-get-documents (vlax-get-acad-object))) 
+	(setq doc (vla-get-documents (vlax-get-acad-object)))
 
 	(if (findfile file)
 
@@ -17,9 +17,9 @@
 			(vla-open doc file :vlax-true)
 			(vla-open doc file :vlax-false)
 		)
- 
+
 		(progn
-			
+
 			(princ (strcat "not found " file))
 			(princ)
 		)
@@ -29,10 +29,10 @@
 ; window tab active
 (defun qr-FileOpen_Dwg_Active (file ReadOnly / doc )
 
-	(setq doc (vla-get-documents (vlax-get-acad-object))) 
+	(setq doc (vla-get-documents (vlax-get-acad-object)))
 
 	(if (findfile file)
- 
+
 		(if ReadOnly
 
 			(vla-activate (vla-open doc file :vlax-true))
@@ -40,7 +40,7 @@
 		)
 
 		(progn
-			
+
 			(princ (strcat "not found " file))
 			(princ)
 		)
@@ -49,12 +49,12 @@
 (defun c:aa (/ filename )
 
 	; (setq f "c:\\d drive\\drawing1.dwg")
-	
-	(setq filename 
-		(getfiled 
-			"Open Drawing" 
-			(getvar 'dwgprefix) 
-			"dwg" 
+
+	(setq filename
+		(getfiled
+			"Open Drawing"
+			(getvar 'dwgprefix)
+			"dwg"
 			0
 		)
 	)

@@ -8,7 +8,7 @@
 
 (vl-load-com)
 (defun c:aa (/ doc )
-	
+
 	(setq doc (vla-get-ActiveDocument (vlax-get-acad-object)))
 
 	(if (ssget "_:L")

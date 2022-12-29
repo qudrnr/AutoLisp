@@ -186,22 +186,22 @@
 	; Adds an element to the end of the list and returns the list.
 	; ==========================================================
 	; @param item {..} : Elements to Add to List
-	; @param array {list}
+	; @param lst {list}
 	; ==========================================================
 	; return : {list}
 	; ==========================================================
 	; (qr-push "C" '("A" "B"))  --> ("A" "B" "C")
 	; ==========================================================
-	(defun qr-push ( item array )
+	(defun qr-push ( item lst )
 
 		(cond
-			(	(= nil array)
+			(	(= nil lst)
 
 				(list item)
 			)
 			(	t
 
-				(append array (list item))
+				(append lst (list item))
 			)
 		)
 	)
@@ -210,34 +210,34 @@
 	; Adds an element to the index of the list and returns the list.
 	; ==========================================================
 	; @param item {..}: Elements to Add to List
-	; @param array {list}
+	; @param lst {list}
 	; @param index {int}: index number
 	; ==========================================================
 	; return : {list}
 	; ==========================================================
-	; (qr-pushOfIndex "C" '("A" "B" "D") 2)  --> ("A" "B" "C" "D")
+	; (qr-pushIndexOf "C" '("A" "B" "D") 2)  --> ("A" "B" "C" "D")
 	; ==========================================================
-	(defun qr-pushOfIndex ( item array index )
+	(defun qr-pushIndexOf ( item lst index )
 
 		(cond
 			(	(= 0 index)
 
 				(reverse
-					(qr-push item (reverse array))
+					(qr-push item (reverse lst))
 				)
 			)
-			(	(< 0 index (length array))
+			(	(< 0 index (length lst))
 
 				(cons
-					(car array)
-					(qr-pushOfIndex
-						item (cdr array) (1- index)
+					(car lst)
+					(qr-pushIndexOf
+						item (cdr lst) (1- index)
 					)
 				)
 			)
 			(	t
 
-				(qr-push item array)
+				(qr-push item lst)
 			)
 		)
 	)
@@ -259,5 +259,38 @@
 			)
 		)
 	)
+
+	; ==========================================================
+	; To flat single level list
+	; ==========================================================
+	; @param lst {list}
+	; @etc : remove 'nil'
+	; ==========================================================
+	; return : {list}
+	; ==========================================================
+	; (qr-flat (list 1 (list 2 3) 4 (list 5 (list 6 7)))
+	;  --> (1 2 3 4 5 (6 7))
+	; ==========================================================
+	(defun qr-flat ( lst )
+
+		(if (and lst (listp lst))
+
+			(apply 'append
+				(mapcar
+					'(lambda ( item )
+
+						(if (listp item)
+
+							item
+							(list item)
+						)
+
+					) lst
+				)
+			)
+		)
+	)
 )
+
 (princ)
+
