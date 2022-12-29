@@ -9,4 +9,4 @@
     * qr-lwpoly
     * qr-dimrotated
     * qr-hatch
-    * qr-push
+    * qr-push : 리스트의 맨 마지막에 요소를 추가합니다.

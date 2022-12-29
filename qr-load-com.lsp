@@ -6,6 +6,8 @@
 
 (defun qr-load-com ()
 
+	(vl-load-com)
+
 	(defun qr-Modelspace ()
 
 		(setq doc (vla-get-activedocument (vlax-get-acad-object))
@@ -162,19 +164,12 @@
 	; @param item : Elements to Add to List
 	; @param array : List
 	; ==========================================================
-	; (qr-push "A" (list "B" "C")) -> ("B" "C" "A")
-	; (qr-push (list "C") (list "A" "B")) -> ("A" "B" "C")
-	; ==========================================================
 	(defun qr-push ( item array )
 
 		(cond
 			(	(= nil array)
 
 				(list item)
-			)
-			(	(and item (listp item))
-
-				(append array item)
 			)
 			(	t
 
@@ -183,9 +178,34 @@
 		)
 	)
 
-	(defun qr-pushOfIndex ( item array index)
+	; ==========================================================
+	; @param item : Elements to Add to List
+	; @param array : List
+	; @param index : index number
+	; ==========================================================
+	(defun qr-pushOfIndex ( item array index )
 
-		t
+		(cond
+			(	(= 0 index)
+
+				(reverse
+					(qr-push item (reverse array))
+				)
+			)
+			(	(< 0 index (length array))
+
+				(cons
+					(car array)
+					(qr-pushOfIndex
+						item (cdr array) (1- index)
+					)
+				)
+			)
+			(	t
+
+				(qr-push item array)
+			)
+		)
 	)
 )
 (princ)
