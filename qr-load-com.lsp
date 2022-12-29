@@ -8,6 +8,9 @@
 
 	(vl-load-com)
 
+	; ==========================================================
+	; space define
+	; ==========================================================
 	(defun qr-Modelspace ()
 
 		(setq doc (vla-get-activedocument (vlax-get-acad-object))
@@ -17,6 +20,9 @@
 		(princ)
 	)
 
+	; ==========================================================
+	; space define
+	; ==========================================================
 	(defun qr-Paperspace ()
 
 		(setq doc (vla-get-activedocument (vlax-get-acad-object))
@@ -26,9 +32,15 @@
 		(princ)
 	)
 
-	; @extvar spc {vla-object} : Active Document Space
+	; ==========================================================
+	; line drawing
+	; ==========================================================
 	; @param p1 {point} : start point
 	; @param p2 {point} : end point
+	; @extvar spc {vla-object} : Active Document Space
+	; ==========================================================
+	; return : IAcadLine
+	; ==========================================================
 	(defun qr-Line ( p1 p2 )
 
 		(if (and spc p1 p2)
@@ -40,9 +52,15 @@
 		)
 	)
 
-	; @extvar spc {vla-object} : Active Document Space
+	; ==========================================================
+	; circle drawing
+	; ==========================================================
 	; @param ptr {point} : center point
 	; @param rad {real} : radius
+	; @extvar spc {vla-object} : Active Document Space
+	; ==========================================================
+	; return : IAcadCircle
+	; ==========================================================
 	(defun qr-circle ( ptr rad )
 
 		(if (and spc ptr rad)
@@ -54,30 +72,20 @@
 		)
 	)
 
-	; @extvar spc {vla-object} : Active Document Space
+	; ==========================================================
+	; LwPolyline drawing
+	; ==========================================================
 	; @param lst {LIST} : Point List
 	; @param cls {INT} : close
-	; @return : VLA-OBJECT
-	(defun qr-LWPoly ( lst cls / qr-flat var obj)
-
-		; list를 flat하게 만든다.
-		(defun qr-flat ( lst )
-
-			(if (atom lst)
-
-				(list lst)
-
-				(append
-					(qr-flat (car lst))
-					(if (cdr lst) (qr-flat (cdr lst)))
-				)
-			)
-		)
+	; @extvar spc {vla-object} : Active Document Space
+	; ==========================================================
+	; @return : IAcadLWPolyline
+	; ==========================================================
+	(defun qr-LWPoly ( lst cls / var obj)
 
 		(and
-
 			(setq var
-				(qr-flat
+				(qr-flatten
 					(mapcar 'list
 						(mapcar 'car lst)
 						(mapcar 'cadr lst)
@@ -105,11 +113,17 @@
 		obj
 	)
 
-	; @extvar spc {vla-object} : Active Document Space
+	; ==========================================================
+	; dimRotated Dimension drawing
+	; ==========================================================
 	; @param p1 {point} : first point
 	; @param p2 {point} : second point
 	; @param p3 {point} : text point
 	; @param ang {real} : angle
+	; @extvar spc {vla-object} : Active Document Space
+	; ==========================================================
+	; return : IAcadDimRotated
+	; ==========================================================
 	(defun qr-DimRotated ( p1 p2 p3 ang )
 
 		(if (and p1 p2 p3 ang)
@@ -120,10 +134,15 @@
 		)
 	)
 
-	; @brief : Hatch drawing
+	; ==========================================================
+	; Hatch drawing
+	; ==========================================================
 	; @param Obj {VLA-OBJECT} : Polyline, Circle object
 	; @param Shape {STR} : Pattern name
 	; @etc : modelspace only
+	; ==========================================================
+	; return : IAcadHatch
+	; ==========================================================
 	(defun qr-Hatch ( Obj Shape / doc spc hat ole )
 
 		(qr-modelspace)
@@ -149,8 +168,13 @@
 		)
 	)
 
-	; @brief : object copy only
-	; @param obj {VLA-OBJECT} : Object
+	; ==========================================================
+	; Copy the VLA-object.
+	; ==========================================================
+	; @param obj {VLA-OBJECT}
+	; ==========================================================
+	; return : {VLA-OBJECT}
+	; ==========================================================
 	(defun qr-copy ( obj )
 
 		(vl-catch-all-apply 'vlax-invoke
@@ -159,10 +183,14 @@
 	)
 
 	; ==========================================================
-	; Add one or more elements to the end of the list and return the list.
+	; Adds an element to the end of the list and returns the list.
 	; ==========================================================
-	; @param item : Elements to Add to List
-	; @param array : List
+	; @param item {..} : Elements to Add to List
+	; @param array {list}
+	; ==========================================================
+	; return : {list}
+	; ==========================================================
+	; (qr-push "C" '("A" "B"))  --> ("A" "B" "C")
 	; ==========================================================
 	(defun qr-push ( item array )
 
@@ -179,9 +207,15 @@
 	)
 
 	; ==========================================================
-	; @param item : Elements to Add to List
-	; @param array : List
-	; @param index : index number
+	; Adds an element to the index of the list and returns the list.
+	; ==========================================================
+	; @param item {..}: Elements to Add to List
+	; @param array {list}
+	; @param index {int}: index number
+	; ==========================================================
+	; return : {list}
+	; ==========================================================
+	; (qr-pushOfIndex "C" '("A" "B" "D") 2)  --> ("A" "B" "C" "D")
 	; ==========================================================
 	(defun qr-pushOfIndex ( item array index )
 
@@ -207,5 +241,24 @@
 			)
 		)
 	)
+
+	; ==========================================================
+	; nested array
+	; ==========================================================
+	; @param {list} : lst
+	; ==========================================================
+	; http://www.lee-mac.com/flatten.html
+	; ==========================================================
+	(defun qr-flatten ( l )
+
+		(if (atom l)
+			(list l)
+			(append
+				(qr-flatten (car l))
+				(if (cdr l) (qr-flatten (cdr l)))
+			)
+		)
+	)
+
 )
 (princ)
