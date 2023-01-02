@@ -290,6 +290,27 @@
 			)
 		)
 	)
+
+	; ==========================================================
+	; flat list (default : 1 depth)
+	; ==========================================================
+	; @param lst {list}
+	; @param depth {int}
+	; @etc : remove 'nil'
+	; ==========================================================
+	; return : {list}
+	; ==========================================================
+	; (qr-flatDeep (list 1 (list 2 (list 3 (list 4)))) nil) --> (1 2 (3 (4)))
+	; (qr-flatDeep (list 1 (list 2 (list 3 (list 4)))) 1) --> (1 2 (3 (4)))
+	; (qr-flatDeep (list 1 (list 2 (list 3 (list 4)))) 2) --> (1 2 3 (4))
+	; (qr-flatDeep (list 1 (list 2 (list 3 (list 4)))) 3) --> (1 2 3 4)
+	; ==========================================================
+	(defun qr-flatDeep ( lst depth )
+
+		(if (= nil depth)	(setq depth 1))
+
+		(repeat depth (setq lst (qr-flat lst)))
+	)
 )
 
 (princ)
