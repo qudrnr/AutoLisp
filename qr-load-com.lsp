@@ -311,6 +311,36 @@
 
 		(repeat depth (setq lst (qr-flat lst)))
 	)
+
+	; ==========================================================
+	; List Entry
+	; ==========================================================
+	; @param {list}
+	; return {List}
+	; ==========================================================
+	; (qr-entries (list "A" "B" "C"))
+	; --> ((0 "A") (1 "B") (2 "C"))
+	; ==========================================================
+	(defun qr-entries ( lst / iv )
+
+		(setq iv -1)
+		(mapcar
+			'(lambda ( item )
+
+				(setq iv (1+ iv))
+
+				(cond
+					(	(and item (listp item))
+
+						(qr-entries item)
+					)
+					(	t	(list iv item))
+				)
+
+			) lst
+		)
+	)
+
 )
 
 (princ)

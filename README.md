@@ -13,4 +13,5 @@
     * qr-pushIndexOf : 리스트의 원하는 위치에 요소를 추가합니다.
     * qr-flatten : 리스트를 모두 이어 붙인다.[lee-mac]
     * qr-flat : 리스트를 1 단계만 이어 붙인다.
-
+    * qr-flatDeep : 리스트를 단계를 지정해서 이어 붙인다.
+    * qr-entries : 리스트의 각각의 요소에 position 숫자를 추가해준다.
