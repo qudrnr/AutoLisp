@@ -365,6 +365,35 @@
 			)
 		)
 	)
+
+	; ==========================================================
+	; ssget and vla object
+	; ==========================================================
+	; return {List}
+	; ==========================================================
+	; (qr-SelectionSet "LINE")
+	; ==========================================================
+	(defun qr-SelectionSet ( str / i name sst ent lst)
+
+		(setq i -1)
+
+		(if (and
+				(setq name (strcat "'((0 . " "\"" str "\"" "))"))
+
+				(setq name (eval (read name)))
+
+				(setq sst (ssget name))
+			)
+
+			(while (setq ent (ssname sst (setq i (1+ i))))
+
+				(setq lst (cons (vlax-ename->vla-object ent) lst))
+			)
+		)
+
+		lst
+	)
+
 )
 
 (princ)
