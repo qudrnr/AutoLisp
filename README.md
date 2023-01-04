@@ -15,3 +15,4 @@
     * qr-flat : 리스트를 1 단계만 이어 붙인다.
     * qr-flatDeep : 리스트를 단계를 지정해서 이어 붙인다.
     * qr-entries : 리스트의 각각의 요소에 position 숫자를 추가해준다.
+    * qr-positionList : 리스트에서 요소를 찾아서 위치값을 리턴해준다.
