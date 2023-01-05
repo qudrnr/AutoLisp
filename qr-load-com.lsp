@@ -375,7 +375,7 @@
 	; (qr-SelectionSet '((0 . "CIRCLE")))
 	; (qr-SelectionSet '((0 . "LINE,CIRCLE")))
 	; ==========================================================
-	(defun qr-SelectionSet ( types / i name sst ent lst)
+	(defun qr-SelectionSet ( types / i sst ent lst)
 
 		(setq i -1)
 
