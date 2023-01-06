@@ -371,15 +371,21 @@
 	; ==========================================================
 	; return {List}
 	; ==========================================================
+	; (qr-SelectionSet nil))
 	; (qr-SelectionSet '((0 . "LINE")))
 	; (qr-SelectionSet '((0 . "CIRCLE")))
 	; (qr-SelectionSet '((0 . "LINE,CIRCLE")))
 	; ==========================================================
 	(defun qr-SelectionSet ( types / i sst ent lst)
 
+		(cond
+			(	types	(setq sst (ssget types)))
+			(	t		(setq sst (ssget)))
+		)
+
 		(setq i -1)
 
-		(if (and types (setq sst (ssget types)))
+		(if sst
 
 			(while (setq ent (ssname sst (setq i (1+ i))))
 
