@@ -401,7 +401,45 @@
 		lst
 	)
 
+	; ==========================================================
+	; Clip Board Write
+	; ==========================================================
+	; @param {String}
+	; ==========================================================
+	; (qr-ClipboardWrite "test String")
+	; ==========================================================
+	(defun qr-ClipBoardWrite ( context /
 
+			htmlDoc windows transfer result
+		)
+
+		(and
+
+			(= 'STR (type context))
+
+			; DispHTMLDocument
+			(setq htmlDoc (vlax-create-object "htmlfile"))
+
+			; DispHTMLWindow2
+			(setq windows (vlax-get htmlDoc 'ParentWindow))
+
+			; IHTMLDataTransfer
+			(setq transfer (vlax-get windows 'ClipBoardData))
+
+			(setq result
+				(vl-catch-all-apply
+					'vlax-invoke
+					(list transfer 'setData "Text" context)
+				)
+			)
+		)
+
+		; release object
+		(vl-catch-all-apply 'vlax-release-object (list htmlDoc))
+
+		; return
+		(= -1 result)
+	)
 )
 
 (princ)
