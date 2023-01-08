@@ -5,7 +5,7 @@
 
 (vl-load-com)
 
-(defun qr-load-drawing ()
+(defun qr-load-draw ()
 
 	; ==========================================================
 	; space define
