@@ -27,3 +27,4 @@
     * qr-ClipBoardWrite : window OS 클립보드에 텍스트를 저장한다.
     * qr-ClipBoardRead : window OS 클립보드에 있는 텍스트를 읽어온다
     * qr-ClipBoardClear : window OS 클립보드에 있는 내용을 지운다.
+    * qr-Delay : 해당 시간만큼 동작을 일시중지한다. (1000 ms = 1 sec.)
