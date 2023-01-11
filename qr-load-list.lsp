@@ -202,6 +202,23 @@
 
 		lst
 	)
+
+	; =====================================================
+	; find VLA-OBJECT from List
+	; =====================================================
+	(defun qr-findVLA ( lst )
+
+		(vl-remove-if-not
+			'(lambda ( obj)
+
+				(and
+					(= 'VLA-OBJECT (type obj))
+					(not (vlax-erased-p obj))
+				)
+
+			) (qr-flatten lst)
+		)
+	)
 )
 
 (princ)

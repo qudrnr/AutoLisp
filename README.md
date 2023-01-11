@@ -21,6 +21,7 @@
     * qr-entries : 리스트의 각각의 요소에 position 숫자를 추가해준다.
     * qr-positionList : 리스트에서 요소를 찾아서 위치값을 리턴해준다.
     * qr-SelectionSet : ssget으로 객체를 선택하고 vla 객체로 리턴해준다.
+    * qr-findVLA : 리스트에서 모든 VLA객체를 찾아서 리턴해준다
 
 ### qr-load-obj.lsp
 
